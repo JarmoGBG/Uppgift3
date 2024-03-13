@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Uppgift3
+namespace Uppgift3.Errors
 {
     abstract class UserError
     {

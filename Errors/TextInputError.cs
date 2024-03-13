@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Uppgift3
+namespace Uppgift3.Errors
 {
-    internal class TooManyCharactersError : UserError
+    internal class TextInputError : UserError
     {
         public override string UEMessage()
         {
-            return ("You tried to use too many characters in a text field. This fired an error!");
+            return "You tried to use a text input in a numeric only field. This fired an error!";
         }
     }
 }

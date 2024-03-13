@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Uppgift3.Animals;
+using Uppgift3.Errors;
 
 
 namespace Uppgift3
@@ -7,6 +9,71 @@ namespace Uppgift3
     {
         static void Main(string[] args)
         {
+            var animalList = new List<Animal>();
+            var worm = new Worm(23, "Dagge", 2, true);
+            var swan = new Swan(57, "Den Elake", 15, true);
+            var wolfMan = new Wolfman(719, "Jack", 115);
+
+            animalList.Add(worm);
+            animalList.Add(swan);
+            animalList.Add(wolfMan);
+
+            foreach(var animal in animalList)
+            {
+                Console.Write($"{animal.GetType().Name} says ");
+                animal.DoSound();
+
+                if (animal is IPerson)
+                {
+                    (animal as IPerson)?.Talk();
+                }
+            }
+
+            Console.WriteLine();
+         
+            var dogList = new List<Dog>();
+            var horse = new Horse(15, "Hamburgerkött", 57, true);
+            //dogList.Add(horse);
+            //F9: För att kunna lägga till ett djur i Hundlistan, så måste djuret antingen vara av Hund-klassen eller en subklass till Hund-klassen för att kunna vara ett objekt av en klass som kan adderas till listan.
+            //F10: Listan måste vara av en klass innan hund & häst divergerar från varandra & blir olika specialiseringar dvs. när dom subklassar sig. En lista med animals fungerar eller om man vill vara än mer generisk, 
+            //     en lista av Objects.En punkt i klasshierarkin innan deras grenar splittar sig & dom specialiserar sig åt olika håll. 
+
+
+            animalList.Add(horse);
+            animalList.Add(new Dog(2, "Bjäfs", 2154, false));
+
+            foreach(var animal in animalList)
+            {
+                Console.WriteLine(animal.Stats());
+            }
+
+            Console.WriteLine();
+            //F13: Dom olika statsen skrivs ut, statsmetoden i varje subklass skriver först ut subklassens specifika stats & sen anropar den basklassen, Animal:s, stats metod som skriver ut alla dom stats som är gemensamma för
+            //     alla klasser som ärver från Animal. 
+
+            foreach(var animal in animalList)
+            {
+                if(animal is Dog)
+                {
+                    Console.WriteLine(animal.Stats());
+                }
+            }
+
+            Console.WriteLine();
+
+
+            //F17: Kommer inte åt den subklass specifika metoden i Dog när man jobbar på basklassen Animal då den är mer generell & har inte tillgång till subklassernas specialiseringar.
+            foreach(var animal in animalList)
+            {
+               if (animal is Dog)
+                {
+                    Console.WriteLine((animal as Dog)?.DogStringMethod());
+                }
+            }
+
+            Console.WriteLine();
+
+
             var personHandler = new PersonHandler();
             try
             {

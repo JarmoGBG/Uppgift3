@@ -10,13 +10,14 @@ namespace Uppgift3
     {
         public Person CreatePerson(int age, string fname, string lname, double height, double weigth)
         {
-            var person = new Person();
-            
-            person.Age = age;
-            person.FName = fname;
-            person.LName = lname;
-            person.Height = height;
-            person.Weight = weigth;
+            var person = new Person
+            {
+                Age = age,
+                FName = fname,
+                LName = lname,
+                Height = height,
+                Weight = weigth
+            };
 
             return person;
         }
